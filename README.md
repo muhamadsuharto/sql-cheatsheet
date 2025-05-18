@@ -22,26 +22,26 @@
 #### **2. DQL _(Data Query Language)_**
 
 - [`SELECT`](#select)
-  - [`TOP` / `LIMIT`](#top-limit), [`AS`](#as)
-  - **Filtros:** [`WHERE`](#where), [`AND` / `OR`](#and-or), [`NULL`](#null), [`BETWEEN`](#between), [`LIKE`](#like), [`IN`](#in), [`EXISTS`](#exists)
-  - **Orden y agrupación:** [`ORDER BY`](#order-by), [`DISTINCT`](#distinct), [`GROUP BY`](#group-by), [`HAVING`](#having)
-  - **Agregaciones:** [`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`](#count-sum-avg-min-max)
-- **Joins:** [`INNER`](#join), [`LEFT`](#left-join), [`RIGHT`](#right-join), [`FULL OUTER`](#full-join), [`CROSS`](#cross-join), [`SELF`](#self-join), [`NATURAL`](#natural-join)
-- **Operadores de conjunto:** [`UNION` / `UNION ALL`](#union), [`INTERSECT`](#intersect), [`EXCEPT` / `MINUS`](#except)
-- **Subconsultas avanzadas:** [`ANY` / `ALL`](#any-all), [`WITH`](#with)
+  - [`TOP`/`LIMIT`](#top-limit) | [`AS`](#as)
+  - **Filtros:** [`WHERE`](#where) | [`AND`/`OR`](#and-or) | [`NULL`](#null) | [`BETWEEN`](#between) | [`LIKE`](#like) | [`IN`](#in) | [`EXISTS`](#exists)
+  - **Orden y agrupación:** [`ORDER BY`](#order-by) | [`DISTINCT`](#distinct) | [`GROUP BY`](#group-by) | [`HAVING`](#having)
+  - **Agregaciones:** [`COUNT`|`SUM`|`AVG`|`MIN`|`MAX`](#count-sum-avg-min-max)
+- **Joins:** [`INNER`](#join) | [`LEFT`](#left-join) | [`RIGHT`](#right-join) | [`FULL OUTER`](#full-join) | [`CROSS`](#cross-join) | [`SELF`](#self-join) | [`NATURAL`](#natural-join)
+- **Operadores de conjunto:** [`UNION`/`UNION ALL`](#union) | [`INTERSECT`](#intersect) | [`EXCEPT`/`MINUS`](#except)
+- **Subconsultas avanzadas:** [`ANY`/`ALL`](#any-all) | [`WITH`](#with)
 
 #### **3. DML _(Data Manipulation Language)_**
 
-- [`INSERT`](#insert), [`UPDATE`](#update), [`DELETE`](#delete)
-- [`CALL`](#call), [`LOCK`](#lock)
+- [`INSERT`](#insert) | [`UPDATE`](#update) | [`DELETE`](#delete)
+- [`CALL`](#call) | [`LOCK`](#lock)
 
 #### **4. DCL _(Data Control Language)_**
 
-- [`GRANT`](#grant), [`REVOKE`](#revoke)
+- [`GRANT`](#grant) | [`REVOKE`](#revoke)
 
 #### **5. TCL _(Transaction Control Language)_**
 
-- [`BEGIN TRANSACTION` / `START TRANSACTION`](#begin-start-transaction), [`COMMIT`](#commit), [`SAVEPOINT`](#savepoint), [`ROLLBACK`](#rollback), [`SET TRANSACTION`](#set)
+- [`BEGIN TRANSACTION`/`START TRANSACTION`](#begin-start-transaction) | [`COMMIT`](#commit) | [`SAVEPOINT`](#savepoint) | [`ROLLBACK`](#rollback) | [`SET TRANSACTION`](#set)
 
 <br>
 
