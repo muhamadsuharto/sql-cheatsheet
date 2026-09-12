@@ -1,0 +1,339 @@
+🚀 Phase 1: Introduction to PostgreSQL
+✅ What is PostgreSQL?
+PostgreSQL is a powerful, open-source, object-relational database system. It supports:
+
+                        ACID compliance
+1. Complex queries
+2. Joins
+3. Transactions
+4. Custom functions
+5. JSON, Arrays, Triggers, and much more
+
+
+🔹 Step 1: Create a Database Table
+Paste the following in the Schema SQL box on DB Fiddle:
+
+CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT CHECK (age > 0),
+    enrolled_on DATE DEFAULT CURRENT_DATE
+);
+
+🔹 Step 2: Insert Data
+In the SQL Query box, enter:
+
+INSERT INTO students (name, age) VALUES
+('Alice', 20),
+('Bob', 22),
+('Charlie', 19);
+
+
+🧠 Explanation
+
+SQL Command	   Purpose
+CREATE TABLE	Creates a new table
+SERIAL	        Auto-incrementing integer
+PRIMARY KEY	Uniquely identifies rows
+VARCHAR(100)	Text with max 100 chars
+NOT NULL	Field cannot be empty
+CHECK	        Validates input
+
+
+| Clause       | Use                                           |
+| ------------ | --------------------------------------------- |
+|  WHERE       | Filters rows                                  |
+| `BETWEEN`    | Checks value in a range                       |
+| `IN`         | Matches any value in a list                   |
+| `LIKE/ILIKE` | Pattern matching (case sensitive/insensitive) |
+| `ORDER BY`   | Sort results                                  |
+| `LIMIT`      | Restrict number of results                    |
+| `OFFSET`     | Skip rows                                     |
+| `AS`         | Rename columns                                |
+
+
+
+*                  DATATYPES
+                 -------------
+
+| Category       | Data Type            | Example                       |
+| -------------- | -------------------- | ----------------------------- |
+| Integer        | `INT`, `SERIAL`      | `age INT = 25`                |
+| Floating Point | `NUMERIC(p,s)`       | `salary NUMERIC(8,2)`         |
+| Text           | `VARCHAR(n)`, `TEXT` | `name VARCHAR(100)`           |
+| Date/Time      | `DATE`, `TIMESTAMP`  | `join_date DATE`              |
+| Boolean        | `BOOLEAN`            | `active BOOLEAN = TRUE`       |
+| JSON/Array     | `JSON`, `TEXT[]`     | `details JSON`, `tags TEXT[]` |
+
+*                  CONSTRAINTS
+                 ---------------
+
+| Constraint    | Purpose                                      |
+| ------------- | -------------------------------------------- |
+| `NOT NULL`    | Column must have a value                     |
+| `UNIQUE`      | All values must be different                 |
+| `PRIMARY KEY` | Uniquely identifies rows (NOT NULL + UNIQUE) |
+| `FOREIGN KEY` | Links to primary key in another table        |
+| `CHECK`       | Ensures condition is true                    |
+| `DEFAULT`     | Sets default value                           |
+
+
+                     OPERATORS
+                   -------------
+
+You can use operators like:
+
+1) (=, !=, >, <, >=, <=)
+
+2) (AND, OR, NOT)
+
+
+                                     Functions and Expression
+                                   -----------------------------
+
+Function	                  Description
+
+COUNT(*)	                    Counts the number of all rows.
+COUNT(column_name)	            Counts the number of non-NULL values in a column.
+COUNT(DISTINCT column_name)	    Counts the number of unique, non-NULL values in a column.
+SUM(column_name)	            Calculates the sum of a set of numbers.
+AVG(column_name)	            Calculates the average of a set of numbers.
+MAX(column_name)	            Finds the maximum value in a set of values.
+MIN(column_name)	            Finds the minimum value in a set of values.
+ARRAY_AGG(column_name)	            Aggregates all input values (including NULLs) into an array.
+STRING_AGG(column_name, delimiter)  Concatenates non-NULL input values into a string, separated by a specified delimiter.
+BOOL_AND(column_name)	            Returns true if all input values are true.
+BOOL_OR(column_name)	            Returns true if at least one input value is true.
+EVERY(column_name)	            Equivalent to BOOL_AND().
+
+Export to Sheets
+
+Statistical Aggregate Functions
+Function          	Description
+CORR(Y, X)	        Calculates the correlation coefficient between two sets of numbers.
+COVAR_POP(Y, X)	        Calculates the population covariance.
+COVAR_SAMP(Y, X)	Calculates the sample covariance.
+REGR_SLOPE(Y, X)	Calculates the slope of the least-squares-fit linear equation.
+REGR_INTERCEPT(Y, X)	Calculates the y-intercept of the least-squares-fit linear equation.
+REGR_COUNT(Y, X)	Counts the number of non-NULL input pairs.
+
+Export to Sheets
+JSON/XML                         Aggregate Functions
+Function	                     Description
+JSON_AGG(value)	                 Aggregates values as a JSON array.
+JSONB_AGG(value)	         Aggregates values as a JSONB array.
+JSON_OBJECT_AGG(name, value)     Aggregates name/value pairs into a JSON object.
+JSONB_OBJECT_AGG(name, value)	 Aggregates name/value pairs into a JSONB object.
+XMLAGG(value)	                 Concatenates non-NULL XML values.
+
+                                        CONDITIONALS
+                                       ---------------
+ _____________________________________________
+|SELECT title,                                |
+|       CASE                                  |
+|           WHEN price >= 500 THEN 'Expensive'|
+|           WHEN price >= 300 THEN 'Moderate' |
+|           ELSE 'Cheap'                      |
+|       END AS price_category                 |
+|FROM books;                                  |
+----------------------------------------------
+
+                                             JOIN
+                                            ------
+
+Joins
+├── INNER JOIN
+│   └── Returns matching rows from both tables
+│
+├── OUTER JOIN
+│   ├── LEFT JOIN
+│   │   └── All from LEFT + matched from RIGHT
+│   ├── RIGHT JOIN
+│   │   └── All from RIGHT + matched from LEFT
+│   └── FULL JOIN
+│       └── All from BOTH sides, matched where possible
+│
+└── CROSS JOIN
+    └── Cartesian product: every row of A × every row of B
+
+
+Inner-join
+ _______________________________
+|SELECT * FROM A               |
+|INNER JOIN B ON A.id = B.a_id;|
+--------------------------------
+
+Left-Join
+______________________________
+|SELECT * FROM A              |
+|LEFT JOIN B ON A.id = B.a_id;|
+------------------------------
+
+Right-Join
+ ______________________________
+|SELECT * FROM A               |
+|RIGHT JOIN B ON A.id = B.a_id;|
+-------------------------------
+
+Full-Join
+ _______________________________________________________
+|SELECT b.title, a.name AS authorFROM books b           |
+|FULL OUTER JOIN authors a ON b.author_id = a.author_id;|
+---------------------------------------------------------
+
+Cross-Join
+ _____________________________________
+|SELECT a.name, b.titleFROM authors a |
+|CROSS JOIN books b;                  |
+--------------------------------------
+
+                                             SUBQUERIES
+                                            ------------
+A subquery is a query nested inside another query.
+
+ Scalar Subquery
+->Returns one single value.
+ _____________________________________________
+|SELECT name, price FROM books                |
+|WHERE price > (SELECT AVG(price) FROM books);|
+----------------------------------------------
+
+ Table Subquery
+->Acts like a table.
+_______________________________________________________
+|SELECT * FROM (SELECT * FROM books WHERE price > 500) |
+|AS expensive_books;                                   |
+--------------------------------------------------------
+
+  Correlated Subquery
+->Refers to the outer query.
+ _______________________________________________________________________________________
+|SELECT nameFROM authors a                                                              |
+|WHERE EXISTS (SELECT 1 FROM books b WHERE b.author_id = a.author_id AND b.price > 600);|
+----------------------------------------------------------------------------------------
+
+Set Operations
+These operations combine rows from two or more queries.
+
+🔸 A. UNION
+Combines results and removes duplicates.
+ _______________________________ 
+|SELECT name FROM authors UNION |
+|SELECT title FROM books;       |
+---------------------------------
+
+🔸 B. UNION ALL
+Same as UNION but keeps duplicates.
+ ___________________________________
+|SELECT name FROM authors UNION ALL |
+|SELECT title FROM books;           |
+-------------------------------------
+
+🔸 C. INTERSECT
+Returns rows common to both queries.
+ ____________________________________
+|SELECT author_id FROM booksINTERSECT|
+|SELECT author_id FROM authors;      |
+ ------------------------------------
+🔸 D. EXCEPT
+ ____________________________________
+|SELECT author_id FROM authorsEXCEPT |
+|SELECT author_id FROM books;        |
+--------------------------------------
+                                               Data Modeling
+
+Data modeling is the process of organizing and structuring your database tables to:
+
+  Avoid redundancy
+1)Ensure data integrity
+2)Support efficient querying
+
+
+| Relationship     | Description                    | Example            |
+| ---------------- | ------------------------------ | ------------------ |
+|   One-to-One     | One row in A matches one in B  | Person ↔ Passport  |
+|   One-to-Many    | One row in A maps to many in B | Author → Books     |
+|   Many-to-Many   | Multiple rows in A relate to B | Students ↔ Courses |
+
+
+Database Normalization : Normalization reduces redundancy and improves consistency.
+
+->First Normal Form (1NF)
+
+-Eliminate repeating groups and arrays.
+-Use separate rows instead.
+ _____________________________________
+|         Bad (not 1NF)               |
+|name: "John"                         |
+|hobbies: "Reading, Swimming, Coding" |
+|                                     |
+|          Good (1NF)                 |
+|name: "John", hobby: "Reading"       |
+|name: "John", hobby: "Swimming"      |
+---------------------------------------
+
+📦 Second Normal Form (2NF)
+-Remove partial dependencies (when a column depends only on part of a composite key).
+
+📦 Third Normal Form (3NF)
+-Remove transitive dependencies (columns depending on other non-key columns).
+___________________________________________________
+|             Bad                                  |
+|employees(emp_id, name, dept_name, dept_location) |
+|                                                  |
+|         Better (3NF)                             |
+|departments(dept_id, dept_name, dept_location)    |
+|employees(emp_id, name, dept_id)                  |
+---------------------------------------------------
+
+
+                                          Views, Indexes, and Materialized Views
+                                        -----------------------------------------
+These features help with:
+
+-Simplifying complex queries (Views)
+-Improving performance (Indexes)
+-Storing query results like a snapshot (Materialized Views)
+
+ 
+ VIEWS
+ _______________________________
+|CREATE VIEW expensive_books AS |
+|SELECT title, price FROM books |
+|WHERE price > 500;             |
+---------------------------------
+ _______________________________
+|SELECT * FROM expensive_books; |
+--------------------------------
+
+INDEXES
+
+An index is like a table of contents — it speeds up searches on large tables.
+ _____________________________________________
+|CREATE INDEX idx_books_price ON books(price);|
+----------------------------------------------
+ _______________________________________________________________
+|CREATE INDEX idx_books_price_author ON books(price, author_id);|
+-----------------------------------------------------------------
+
+Materialized Views
+A materialized view stores the result of a query physically (like a snapshot).
+
+ ______________________________________
+|CREATE MATERIALIZED VIEW top_books AS |
+|SELECT * FROM books WHERE price > 600;|
+----------------------------------------
+
+                                           Transactions
+
+A transaction is a group of operations that are executed as a single unit.
+Either all operations succeed, or none do.
+ ______________________________________________________________________
+| Property        | Description                                        |
+| --------------- | -------------------------------------------------- |
+| **Atomicity**   | All operations in a transaction succeed or none do |
+| **Consistency** | DB moves from one valid state to another           |
+| **Isolation**   | Concurrent transactions don’t interfere            |
+| **Durability**  | Once committed, changes persist even after crashes |
+-----------------------------------------------------------------------
+
